@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Route::middleware('web')
+                ->namespace('App\Http\Controllers')
+                ->group(base_path('routes/web.php'));
     }
 }
