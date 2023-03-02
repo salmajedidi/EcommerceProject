@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('/front/home');
+})->name('home');
+
+Route::get('/', function () {
+    return view('/front/home');
+})->name('shop');
+
+Route::get('/checkout', function () {
+    return view('/front/Cart/checkout');
+})->name('checkout');
+
+Route::resource('/cart', 'CartController');
+Route::post('/cart/edit/{id}',[CartController::class,'update']);
