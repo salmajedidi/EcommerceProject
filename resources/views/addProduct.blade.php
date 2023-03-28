@@ -147,7 +147,6 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-    dd(session('success'));
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container">
@@ -162,12 +161,12 @@
                         </div>
                         <form action="{{ route('product.create') }}" method="POST" enctype="multipart/form-data">
                         @if(session()->has('success'))
-        <div class="container">
-            <div class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        </div>
-    @endif
+                            <div class="container">
+                                <div class="alert alert-success">
+                                    {{ session()->get('success') }}
+                                </div>
+                            </div>
+                        @endif
                         <div class="form-group">
                                 <label for="exampleInputName">Name</label>
                                 @csrf

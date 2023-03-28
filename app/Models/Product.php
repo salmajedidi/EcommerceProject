@@ -14,6 +14,15 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price','quantity','image','description',
+        'name','categorie','fournisseur','price','quantity','image','description',' cretaed_at','updated_at'
     ];
+
+    public function categorie()
+    {
+        return $this->belongsTo('App\Models\Categorie','categorie');
+    }
+    public function fournisseur()
+    {
+        return $this->belongsTo('App\Models\fournisseur','fournisseur');
+    }
 }
