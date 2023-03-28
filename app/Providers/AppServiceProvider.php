@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +34,9 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(['cartItems'=> $cartItems] );    
         });  
+        //
+        Route::middleware('web')
+                ->namespace('App\Http\Controllers')
+                ->group(base_path('routes/web.php'));
     }
 }

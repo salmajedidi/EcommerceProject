@@ -32,6 +32,7 @@
     </head>
 
     <body>
+        
         @include('front.includes.header')
         @yield('content')
         @include('front.includes.footer')
@@ -46,11 +47,7 @@
         <script src="{{asset('/assets/js/owl.carousel.min.js')}}"></script>
         <script src="{{asset('/assets/js/main.js')}}"></script>
     
-        <script>
-            $(document).ready(function() {
-                   
-            });
-        </script>
+
         @yield('script')
     </body>
 </html>
