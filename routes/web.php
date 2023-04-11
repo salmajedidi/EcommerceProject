@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\CategorieController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +51,8 @@ Route::prefix('admin/products')->group(function () {
     Route::get('/add', [ProductController::class, 'create'])->name('product.create');
     Route::post('/add', [ProductController::class, 'store'])->name('product.store');
 });
-
+Route::post('register', [RegisteredUserController::class, 'show']);
+Route::post('login', [AuthenticatedSessionController::class, 'show']);
 Route::prefix('admin/fournisseurs')->group(function () {
     Route::get('/list', [FournisseurController::class, 'index'])->name('fournisseur.index');
     Route::get('/add', [FournisseurController::class, 'create'])->name('fournisseur.create');
@@ -62,6 +64,22 @@ Route::prefix('admin/categories')->group(function () {
     Route::get('/add', [CategorieController::class, 'create'])->name('categorie.create');
     Route::post('/add', [CategorieController::class, 'store'])->name('categorie.store');
 });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::middleware(['auth','role:admin'])->group(function () {
+    Route::get('/private', function () {
+        return 'bonjour admin';
+
+    });
+    
+});
+Route::middleware(['auth','role:client'])->group(function () {
+    Route::get('/private/client', function () {
+        return 'bonjour client';
+    });
+});
 //Route::resource('products','App\Http\Controllers\ProductController');
 
-
+require __DIR__.'/auth.php';
