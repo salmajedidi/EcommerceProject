@@ -27,6 +27,7 @@ class CartController extends Controller
      */
     public function create(Request $request)
     {
+        
         Cart::add(['id' => 5, 'name' => "product1", 'qty' => 1,'price'=> 11,"options"=>['stock' => 50, 'affiche'=>"photo"]]);
         return back();
     }

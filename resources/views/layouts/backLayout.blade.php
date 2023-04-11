@@ -92,5 +92,8 @@
    <!-- <script src="{{asset('/backAssets/js/main.js')}}"></script>-->
     <script src="{{asset('/backAssets/js/dashboards-analytics.js')}}"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    @yield('script')
+
   </body>
 </html>

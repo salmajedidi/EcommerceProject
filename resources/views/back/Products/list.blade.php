@@ -61,3 +61,12 @@
   </div>
   <!-- Content wrapper -->
 @endsection
+@section('script')
+<script>
+    $(function(){
+        alert('ho')
+            $('.menu-inner menu-item.active').removeClass('active');
+            $('.menu-inner menu-item.products').addClass('active');
+    })
+</script>
+@endsection
