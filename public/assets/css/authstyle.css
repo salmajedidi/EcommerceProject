@@ -9,7 +9,7 @@ a {
   a:hover {
     color: #4FDA8C; }
 
-input {
+input, select {
   font: 16px/26px "Raleway", sans-serif; }
 
 body {
@@ -44,7 +44,7 @@ body {
       display: none; }
     .form-wrap .tabs-content .active {
       display: block !important; }
-  .form-wrap form .input {
+      .form-wrap form .input,.form-wrap form select {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     color: inherit;

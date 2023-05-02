@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Pays;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -20,12 +21,11 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $pays=Pays::all();
+        
+        return view('auth.register', compact('pays'));
     }
-    public function show()
-    {
-        return view('auth.register');
-    }
+
     /**
      * Handle an incoming registration request.
      *
@@ -37,14 +37,26 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'nom' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'pays' => ['required',],
+            'adresse' => ['required', 'string', 'max:255'],
+            'genre' => ['required'],
+            'tel' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'id_pays' => $request->pays,
+            'adresse' => $request->adresse,
+            'genre' => $request->genre,
+            'role' => $request->role,
             'email' => $request->email,
+            'tel' => $request->tel,
+            'role'=>'client',
             'password' => Hash::make($request->password),
         ]);
 

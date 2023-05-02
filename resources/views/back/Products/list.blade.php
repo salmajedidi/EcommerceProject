@@ -34,14 +34,14 @@
                         <td>
                         <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                             <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="Lilian Fuller">
-                                <img src="{{asset('/backAssets/img/products/'.$product->image)}}" alt="" class="rounded-circle" />
+                                <img src="{{asset('/uploads/products/'.$product->image)}}" alt="" class="rounded-circle" />
                             </li> 
                             <li class="ml-2"><strong>{{$product->name}}</strong></li>
                         </ul>
                         
                         </td>
-                        <td>{{$product->categorie}}</td>
-                        <td>{{$product->fournisseur}}</td>
+                        <td>{{$product->categorie->nom}}</td>
+                        <td>{{$product->fournisseur->nom}}</td>
                         <td>{{$product->price}} DT</td>
                         <td>{{$product->quantity}}</td>
                         <td>
@@ -64,7 +64,6 @@
 @section('script')
 <script>
     $(function(){
-        alert('ho')
             $('.menu-inner menu-item.active').removeClass('active');
             $('.menu-inner menu-item.products').addClass('active');
     })

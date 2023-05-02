@@ -5,6 +5,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\CategorieController;
+use App\Models\Product;
+use App\Models\Categorie;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +20,18 @@ use App\Http\Controllers\CategorieController;
 */
 
 Route::get('/', function () {
-    return view('/front/home');
+    $categories=Categorie::all();
+    $products=Product::all();
+    return view('/front/home', compact(['products','categories']));
 })->name('home');
 
-Route::get('/', function () {
-    return view('/front/home');
+
+Route::get('/shop', function () {
+    $categories=Categorie::all();
+    $products=Product::all();
+    return view('/front/shop', compact(['products','categories']));
 })->name('shop');
+
 
 Route::get('/checkout', function () {
     return view('/front/Cart/checkout');
@@ -34,9 +42,9 @@ Route::get('/admin/Products', function () {
     return view('back/Products/list');
 })->name('productsback');
 
-Route::resource('/cart', 'CartController');
+Route::resource('/cart/', 'CartController');
+Route::get('/cart/add/{id}',[CartController::class,'create'])->name('cart.add');
 Route::post('/cart/edit/{id}',[CartController::class,'update']);
-
 Route::get('/shoppingGrid', [ProductController::class, 'list'])->name('product.list');
 
 Route::get('product', [ProductController::class, 'create'])->name('product.create');
@@ -46,20 +54,20 @@ Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('prod
 
 Route::get('/addProduct', function () { return view('addProduct'); });
 
-Route::prefix('admin/products')->group(function () {
+Route::prefix('admin/products')->middleware(['auth','role:admin'])->group(function () {
     Route::get('/list', [ProductController::class, 'index'])->name('product.index');
     Route::get('/add', [ProductController::class, 'create'])->name('product.create');
     Route::post('/add', [ProductController::class, 'store'])->name('product.store');
 });
-Route::post('register', [RegisteredUserController::class, 'show']);
-Route::post('login', [AuthenticatedSessionController::class, 'show']);
-Route::prefix('admin/fournisseurs')->group(function () {
+
+
+Route::prefix('admin/fournisseurs')->middleware(['auth','role:admin'])->group(function () {
     Route::get('/list', [FournisseurController::class, 'index'])->name('fournisseur.index');
     Route::get('/add', [FournisseurController::class, 'create'])->name('fournisseur.create');
     Route::post('/add', [FournisseurController::class, 'store'])->name('fournisseur.store');
 });
 
-Route::prefix('admin/categories')->group(function () {
+Route::prefix('admin/categories')->middleware(['auth','role:admin'])->group(function () {
     Route::get('/list', [CategorieController::class, 'index'])->name('categorie.index');
     Route::get('/add', [CategorieController::class, 'create'])->name('categorie.create');
     Route::post('/add', [CategorieController::class, 'store'])->name('categorie.store');

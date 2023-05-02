@@ -53,8 +53,8 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->description = $request->description;
-        $product->categorie = $request->fournisseur;
-        $product->fournisseur->$request->categorie;
+        $product->categorie_id = $request->categorie;
+        $product->fournisseur_id = $request->fournisseur;
 
         if($request->hasfile('image'))
         {
@@ -66,7 +66,7 @@ class ProductController extends Controller
         }
         $product->save();
         
-        return redirect('product.index')->with('success', 'Produit crée avec succèss');
+        return redirect()->route('product.index')->with('success', 'Produit crée avec succèss');
     }
 
     /**

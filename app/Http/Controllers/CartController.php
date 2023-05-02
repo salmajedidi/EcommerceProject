@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -25,10 +26,10 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request,$id)
     {
-        
-        Cart::add(['id' => 5, 'name' => "product1", 'qty' => 1,'price'=> 11,"options"=>['stock' => 50, 'affiche'=>"photo"]]);
+        $product=Product::find($id);
+        Cart::add(['id' => $product->id, 'name' => $product->name , 'qty' => 1,'price'=> $product->price,"options"=>['quantity' => $product->quantity, 'image'=>$product->image]]);
         return back();
     }
 

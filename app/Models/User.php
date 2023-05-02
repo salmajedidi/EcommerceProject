@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nom','prenom','date_naiss','genre','email','tel', 'password','role','created_at','updated_at',
+        'nom','prenom','id_pays','adresse','genre','email','tel', 'password','role','created_at','updated_at',
     ];
 
     /**
@@ -41,5 +41,10 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(role::class);
+    }
+
+    public function pays()
+    {
+        return $this->belongsTo('App\Models\pays','id_pays');
     }
 }

@@ -1,136 +1,50 @@
-<style>@import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300);
-* {
-  margin: 0;
-  padding: 0; }
+@extends('layouts.auth')
+@section('title', 'LOGIN')
+@section('content')
 
-a {
-  color: #666;
-  text-decoration: none; }
-  a:hover {
-    color: #4FDA8C; }
 
-input {
-  font: 16px/26px "Raleway", sans-serif; }
+  <section class="login_box">
+    <div class="left">
+        <div class="contact" >
+            <form action="{{route('login')}}" method="POST" style="text-align: center;border: solid 1px rgb(230,230,230); border-radius:8px;padding:50px!important">
+              @csrf
+                <img  style="vertical-align: middle;width:70px;position:relative; margin:auto;" src="/img/user.png" alt="">
+                <h3>LOGIN</h3>
+                <input type="text" name="email" class="@error('email') is-invalid @enderror"  value="{{ old('email') }}" placeholder="Email">
+                @error('email')
+                    <span class="invalid-feedback">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                <input type="password" name="password" class="@error('password') is-invalid @enderror"  value="{{ old('password') }}" placeholder="Password">
+                @error('password')
+                    <span class="invalid-feedback">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                <br>
+                <button class="submit">Login</button>
+                <br>
+                <div style="">
+                    <span><a href="#">Forget Your Password !</a><br></span>
+                </div>
+                
+                
+            </form>
+            <br>
+            
+        </div>
+        
+    </div>
+    <div class="right bg-icon bg-primary">
+        <div class="right-text" style="text-align: center;">
+            <h2><a href="/"><img style="width: 28%" src="{{asset('img/logo.png')}}" alt=""></a></h2>
+            <h5>Login to your account !</h5>
+            <span style="color: black;font-weight:bold;">Or</span><br>
+            <span class="create"><a href="{{route('register')}}"> Create an account !</a></span>
 
-body {
-  color: #666;
-  background-color: #f1f2f2;
-  font: 16px/26px "Raleway", sans-serif; }
+        </div>
+    </div>
+</section>
 
-.form-wrap {
-  background-color: #fff;
-  width: 320px;
-  margin: 3em auto;
-  box-shadow: 0px 1px 8px #BEBEBE;
-  -webkit-box-shadow: 0px 1px 8px #BEBEBE;
-  -moz-box-shadow: 0px 1px 8px #BEBEBE; }
-  .form-wrap .tabs {
-    overflow: hidden; }
-    .form-wrap .tabs h3 {
-      float: left;
-      width: 50%; }
-      .form-wrap .tabs h3 a {
-        padding: 0.5em 0;
-        text-align: center;
-        font-weight: 400;
-        background-color: #e6e7e8;
-        display: block;
-        color: #666; }
-        .form-wrap .tabs h3 a.active {
-          background-color: #fff; }
-  .form-wrap .tabs-content {
-    padding: 1.5em; }
-    .form-wrap .tabs-content div[id$="tab-content"] {
-      display: none; }
-    .form-wrap .tabs-content .active {
-      display: block !important; }
-  .form-wrap form .input {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    color: inherit;
-    font-family: inherit;
-    padding: .8em 0 10px .8em;
-    border: 1px solid #CFCFCF;
-    outline: 0;
-    display: inline-block;
-    margin: 0 0 .8em 0;
-    padding-right: 2em;
-    width: 100%; }
-  .form-wrap form .button {
-    width: 100%;
-    padding: .8em 0 10px .8em;
-    background-color: #28A55F;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    text-transform: uppercase; }
-    .form-wrap form .button:hover {
-      background-color: #4FDA8C; }
-  .form-wrap form .checkbox {
-    visibility: hidden;
-    padding: 20px;
-    margin: .5em 0 1.5em; }
-    .form-wrap form .checkbox:checked + label:after {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-      filter: alpha(opacity=100);
-      opacity: 1; }
-  .form-wrap form label[for] {
-    position: relative;
-    padding-left: 20px;
-    cursor: pointer; }
-    .form-wrap form label[for]:before {
-      content: '';
-      position: absolute;
-      border: 1px solid #CFCFCF;
-      width: 17px;
-      height: 17px;
-      top: 0px;
-      left: -14px; }
-    .form-wrap form label[for]:after {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-      filter: alpha(opacity=0);
-      opacity: 0;
-      content: '';
-      position: absolute;
-      width: 9px;
-      height: 5px;
-      background-color: transparent;
-      top: 4px;
-      left: -10px;
-      border: 3px solid #28A55F;
-      border-top: none;
-      border-right: none;
-      -webkit-transform: rotate(-45deg);
-      -moz-transform: rotate(-45deg);
-      -o-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-      transform: rotate(-45deg); }
-  .form-wrap .help-text {
-    margin-top: .6em; }
-    .form-wrap .help-text p {
-      text-align: center;
-      font-size: 14px; }
-</style>
-<div class="form-wrap">
-		<div class="tabs">
-			<h3 class="login-tab"><a class="active" href="#login-tab-content">Se connecter</a></h3>
-			<h3 class="signup-tab"><a href="/register">S'inscrire</a></h3>
-		</div><!--.tabs-->
-
-		<div class="tabs-content">
-			<div id="login-tab-content" class="active">
-            <form class="login-form" action="{{route('login')}}" method="POST">
-                @csrf
-					<input type="email" name="email" class="input" id="user_login" autocomplete="off" placeholder="Email or Username">
-					<input type="password" name="password" class="input" id="user_pass" autocomplete="off" placeholder="Password">
-					<input type="checkbox" class="checkbox" id="remember_me">
-					<label for="remember_me">Remember me</label>
-
-					<input type="submit" class="button" value="Se connecter">
-				</form><!--.login-form-->
-				
-			</div><!--.signup-tab-content-->
-
-			
-		</div><!--.tabs-content-->
-	</div><!--.form-wrap-->
+@endsection

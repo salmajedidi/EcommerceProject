@@ -1,6 +1,8 @@
 @extends('layouts.backLayout')
 @section('title', 'Categories LIST')
 @section('content')
+
+
  <!-- Content wrapper -->
  <div class="content-wrapper">
     <!-- Content -->
@@ -20,6 +22,7 @@
                 <tr>
                     <th>Ref</th>
                     <th>Nom</th>
+                    <th>Actions</th>
                     
                 </tr>
                 </thead>
@@ -27,11 +30,9 @@
                     @foreach($categories as $categorie)
                     <tr>
                         <td>N° {{$categorie->id}}</td>
-                        <td><strong>{{$categorie->name}}</strong></td>
+                        <td><strong>{{$categorie->nom}}</strong></td>
                        
                         <td>
-                            <a class="btn-link" href="javascript:void(0);"><span class="badge rounded-pill bg-label-success"><i class="bx m-0 mx-1 bx-show-alt me-1"></i></span></a>
-                            <a class="btn-link" href="javascript:void(0);"><span class="badge rounded-pill bg-label-warning"><i class="bx m-0 mx-1 bx-edit-alt me-1"></i></span></a>
                             <a class="btn-link" href="javascript:void(0);"><span class="badge rounded-pill bg-label-danger"><i class="bx m-0 mx-1 bx-trash me-1"></i></span></a>
                         </td>
                     </tr>

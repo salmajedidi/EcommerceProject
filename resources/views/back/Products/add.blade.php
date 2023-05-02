@@ -9,7 +9,7 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <h4 class="fw-bold py-4 px-4 mb-4" style="background-color: white;border-radius: 0.375rem;font-size:18px;">
                     <span class="text-muted fw-light">Ajouter</span> un produit
-                    <button class="primary-btn" style="float: right;">Liste des produits</button>
+                    <a href="{{route('product.index')}}"> <button class="primary-btn" style="float: right;">Liste des produits</button></a>
                 </h4>
 
               <!-- Basic Layout & Basic with Icons -->

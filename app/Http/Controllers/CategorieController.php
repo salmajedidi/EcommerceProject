@@ -38,8 +38,9 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'nom' => 'required|max:255',
         ]);
+        
         $categorie = new \App\Models\Categorie;
 
         $categorie->nom = $request->nom;

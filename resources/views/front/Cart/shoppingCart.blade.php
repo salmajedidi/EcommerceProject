@@ -39,7 +39,7 @@
                             @foreach($cartItems as $cartItem)
                             <tr>
                                 <td class="shoping__cart__item">
-                                    <img src="{{asset('/assets/img/cart/cart-1.jpg')}}" alt="">
+                                    <img style="width:20%" src="{{asset('/uploads/products/'.$cartItem->options->image)}}" alt="">
                                     <h5>{{$cartItem->name}}</h5>
                                 </td>
                                 <td class="shoping__cart__price">
@@ -59,7 +59,7 @@
                                     {{$cartItem->qty * $cartItem->price}}DT
                                 </td>
                                 <td class="shoping__cart__item__close">
-                                    <form action="{{route('cart.destroy',$cartItem->rowId)}}"  method="POST">
+                                    <form action="{{route('destroy',$cartItem->rowId)}}"  method="POST">
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
                                         

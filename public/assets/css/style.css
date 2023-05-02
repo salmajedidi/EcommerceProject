@@ -461,7 +461,7 @@ ol {
 	top: 50px;
 	background: #222222;
 	width: 180px;
-	z-index: 9;
+	z-index: 999!important;
 	padding: 5px 0;
 	-webkit-transition: all, 0.3s;
 	-moz-transition: all, 0.3s;
@@ -706,7 +706,7 @@ ol {
 	top: 14px;
 }
 
-.hero__search__form form input {
+.hero__search__form form input, .hero__search__form form select {
 	width: 70%;
 	border: none;
 	height: 48px;
@@ -3567,7 +3567,7 @@ ol {
   margin-bottom: 40px;
   font-weight: bolder;
 }
-.left input {
+.left input, .pays {
     border: none;
     margin: 15px 0px;
     border-bottom: 1px solid #000;
@@ -3674,7 +3674,6 @@ ol {
 	outline: inherit;
 }
 .header{
-	overflow: hidden;
 	background-color: white;
 	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the top of the page */

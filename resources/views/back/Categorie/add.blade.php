@@ -2,6 +2,7 @@
 @section('title', 'PRODUCTS LIST')
 @section('content')
 
+
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
@@ -32,8 +33,8 @@
 
                             <label class="col-sm-1 mt-3 col-form-label" for="basic-default-name">Nom</label>
                             <div class="col-sm-9 mt-3">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="basic-default-name" />
-                                @error('name')
+                                <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" id="basic-default-name" />
+                                @error('nom')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>

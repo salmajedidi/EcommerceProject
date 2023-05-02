@@ -17,10 +17,10 @@ class ensureUserHasRole
      */
     public function handle(Request $request, Closure $next, String $role)
     {
-        if($request->user()->roles()->where('name',$role)->exists() ) return $next($request);
-         
-        
-        abort(403);
+        if($request->user()->role === $role )
+            return $next($request);
+
+            return redirect(RouteServiceProvider::HOME);
         
     
     }

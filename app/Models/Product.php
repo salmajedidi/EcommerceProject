@@ -19,10 +19,10 @@ class Product extends Model
 
     public function categorie()
     {
-        return $this->belongsTo('App\Models\Categorie','categorie');
+        return $this->belongsTo('App\Models\Categorie','categorie_id');
     }
     public function fournisseur()
     {
-        return $this->belongsTo('App\Models\fournisseur','fournisseur');
+        return $this->belongsTo('App\Models\fournisseur','fournisseur_id');
     }
 }
